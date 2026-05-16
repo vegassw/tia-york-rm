@@ -157,7 +157,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFD60A] overflow-x-hidden" data-testid="home-root">
+    <div className="min-h-screen bg-[#FFD60A] overflow-x-hidden w-full" data-testid="home-root">
       <Toaster position="top-center" richColors />
 
       {/* TOP MARQUEE */}
@@ -643,11 +643,11 @@ export default function Home() {
             </TabsList>
 
             <TabsContent value="detalle">
-              <Card className="mt-6 rounded-3xl border-[4px] border-black shadow-[8px_8px_0_0_#FFD60A]">
-                <CardContent className="p-7 grid sm:grid-cols-2 gap-6 items-center">
+              <Card className="mt-6 rounded-3xl border-[4px] border-black shadow-[8px_8px_0_0_#FFD60A] overflow-hidden">
+                <CardContent className="p-5 sm:p-7 grid sm:grid-cols-2 gap-6 items-center">
                   <div>
-                    <h3 className="font-display text-3xl">PARA TU CASA 🏠</h3>
-                    <p className="text-black/70 mt-2">
+                    <h3 className="font-display text-2xl sm:text-3xl">PARA TU CASA</h3>
+                    <p className="text-black/70 mt-2 text-sm sm:text-base">
                       Pide 1 o más cajas para el freezer. Coordina horario y dirección
                       en Santiago RM. Entrega refrigerada.
                     </p>
@@ -657,12 +657,12 @@ export default function Home() {
                       <li>✓ Entrega en 24-48 horas</li>
                     </ul>
                   </div>
-                  <div className="bg-[#FFD60A] rounded-2xl p-6 border-4 border-black text-center">
-                    <div className="font-script text-xl">desde</div>
-                    <div className="font-display text-5xl text-[#DC2626]">$13.500</div>
-                    <div className="text-sm">por caja de 65 paletas</div>
+                  <div className="bg-[#FFD60A] rounded-2xl p-5 sm:p-6 border-4 border-black text-center">
+                    <div className="font-script text-lg sm:text-xl">desde</div>
+                    <div className="font-display text-3xl sm:text-5xl text-[#DC2626] break-words">$13.500</div>
+                    <div className="text-xs sm:text-sm">por caja de 65 paletas</div>
                     <a
-                      href={waLink("Hola, quiero comprar al detalle para mi casa 🏠")}
+                      href={waLink("Hola, quiero comprar al detalle para mi casa")}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -676,11 +676,11 @@ export default function Home() {
             </TabsContent>
 
             <TabsContent value="mayor">
-              <Card className="mt-6 rounded-3xl border-[4px] border-black shadow-[8px_8px_0_0_#FFD60A]">
-                <CardContent className="p-7 grid sm:grid-cols-2 gap-6 items-center">
+              <Card className="mt-6 rounded-3xl border-[4px] border-black shadow-[8px_8px_0_0_#FFD60A] overflow-hidden">
+                <CardContent className="p-5 sm:p-7 grid sm:grid-cols-2 gap-6 items-center">
                   <div>
-                    <h3 className="font-display text-3xl">PARA TU NEGOCIO 🏪</h3>
-                    <p className="text-black/70 mt-2">
+                    <h3 className="font-display text-2xl sm:text-3xl">PARA TU NEGOCIO</h3>
+                    <p className="text-black/70 mt-2 text-sm sm:text-base">
                       Almacenes, kioscos, ferias, colegios y carros heladeros.
                       Precios especiales desde 5 cajas. Despacho al norte coordinado.
                     </p>
@@ -690,10 +690,10 @@ export default function Home() {
                       <li>✓ Facturación disponible</li>
                     </ul>
                   </div>
-                  <div className="bg-[#FFD60A] rounded-2xl p-6 border-4 border-black text-center">
-                    <div className="font-script text-xl">precios</div>
-                    <div className="font-display text-5xl text-[#DC2626]">MAYORISTAS</div>
-                    <div className="text-sm">cotiza por WhatsApp</div>
+                  <div className="bg-[#FFD60A] rounded-2xl p-5 sm:p-6 border-4 border-black text-center">
+                    <div className="font-script text-lg sm:text-xl">precios</div>
+                    <div className="font-display text-3xl sm:text-5xl text-[#DC2626] break-words leading-tight">MAYORISTAS</div>
+                    <div className="text-xs sm:text-sm">cotiza por WhatsApp</div>
                     <a
                       href={waLink("Hola, quiero precios mayoristas. Mi negocio: ____ Región: ____")}
                       target="_blank"

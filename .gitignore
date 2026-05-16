@@ -28,3 +28,12 @@ yarn-error.log*
 *.pem
 coverage/
 .eslintcache
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials

@@ -17,24 +17,34 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Detect frontend directory
+        id: detect
+        run: |
+          if [ -f "frontend/package.json" ]; then
+            echo "dir=frontend" >> $GITHUB_OUTPUT
+          elif [ -f "package.json" ]; then
+            echo "dir=." >> $GITHUB_OUTPUT
+          else
+            echo "::error::No package.json found at root or in frontend/"
+            exit 1
+          fi
+          echo "Frontend dir: $(cat $GITHUB_OUTPUT)"
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "yarn"
-          cache-dependency-path: frontend/yarn.lock
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        working-directory: ${{ steps.detect.outputs.dir }}
+        run: yarn install --frozen-lockfile || yarn install
 
       - name: Build
+        working-directory: ${{ steps.detect.outputs.dir }}
         env:
           CI: false
         run: yarn build
@@ -45,7 +55,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend/build
+          path: ${{ steps.detect.outputs.dir }}/build
 
   deploy:
     needs: build

@@ -50,7 +50,9 @@ const BOXES = [
     unitPrice: 261,
     count: 65,
     accent: "#DC2626",
-    img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?q=80&w=900&auto=format&fit=crop",
+    bgFrom: "#FFF7CC",
+    bgTo: "#FFD60A",
+    paletas: ["#FCE7A0", "#F5F5F4", "#FCD7B6", "#F8CACA", "#E8C7E1"],
     bullets: ["65 paletas surtidas", "5 sabores cremosos", "Base láctea artesanal"],
   },
   {
@@ -61,7 +63,9 @@ const BOXES = [
     unitPrice: 207,
     count: 65,
     accent: "#1D4ED8",
-    img: "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?q=80&w=900&auto=format&fit=crop",
+    bgFrom: "#DBEAFE",
+    bgTo: "#93C5FD",
+    paletas: ["#E11D48", "#F97316", "#7C3AED", "#A3E635", "#FACC15"],
     bullets: ["65 paletas surtidas", "5 sabores frutales", "100% pulpa natural"],
   },
 ];
@@ -347,12 +351,32 @@ export default function Home() {
                 />
                 <CardContent className="p-0">
                   <div className="grid grid-cols-5 gap-0">
-                    <div className="col-span-2 relative">
-                      <img
-                        src={box.img}
-                        alt={box.title}
-                        className="w-full h-full object-cover aspect-square"
-                      />
+                    <div
+                      className="col-span-2 relative aspect-square overflow-hidden flex items-end justify-center pb-4"
+                      style={{
+                        background: `linear-gradient(160deg, ${box.bgFrom} 0%, ${box.bgTo} 100%)`,
+                      }}
+                    >
+                      {/* CSS Paletas */}
+                      <div className="flex items-end gap-1 sm:gap-2">
+                        {box.paletas.map((c, i) => (
+                          <div
+                            key={i}
+                            className="relative"
+                            style={{
+                              transform: `rotate(${(i - 2) * 6}deg) translateY(${
+                                Math.abs(i - 2) * 4
+                              }px)`,
+                            }}
+                          >
+                            <div
+                              className="w-7 sm:w-9 h-20 sm:h-24 rounded-t-[18px] rounded-b-md border-[3px] border-black"
+                              style={{ background: c }}
+                            />
+                            <div className="w-1.5 h-7 bg-amber-900 mx-auto -mt-1 rounded-b-sm border border-black/30" />
+                          </div>
+                        ))}
+                      </div>
                       <div
                         className="absolute top-3 left-3 rounded-full px-3 py-1 text-xs font-display border-2 border-black"
                         style={{ background: box.accent, color: "white" }}

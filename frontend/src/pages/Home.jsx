@@ -161,10 +161,10 @@ export default function Home() {
       <Toaster position="top-center" richColors />
 
       {/* TOP MARQUEE */}
-      <div className="bg-[#DC2626] text-[#FFD60A] py-2 overflow-hidden font-display text-sm border-b-4 border-black">
-        <div className="marquee-track gap-12 whitespace-nowrap">
+      <div className="bg-[#DC2626] text-[#FFD60A] py-2 overflow-hidden font-display text-[11px] sm:text-sm border-b-4 border-black">
+        <div className="marquee-track gap-8 sm:gap-12 whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, k) => (
-            <div key={k} className="flex items-center gap-12 px-6">
+            <div key={k} className="flex items-center gap-8 sm:gap-12 px-4 sm:px-6">
               <span>🍦 EL HELADO DE PLAYA ANCHA AHORA EN SANTIAGO</span>
               <span>★</span>
               <span>📦 VENTA POR MAYOR Y AL DETALLE</span>
@@ -180,30 +180,30 @@ export default function Home() {
 
       {/* NAVBAR */}
       <nav className="sticky top-0 z-40 bg-[#FFD60A] border-b-4 border-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-3" data-testid="nav-logo">
-            <div className="w-12 h-12 rounded-full bg-white border-4 border-[#DC2626] overflow-hidden grid place-items-center sticker">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between gap-2">
+          <a href="#top" className="flex items-center gap-2 sm:gap-3 min-w-0" data-testid="nav-logo">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-[3px] sm:border-4 border-[#DC2626] overflow-hidden grid place-items-center sticker shrink-0">
               <img src={LOGO_URL} alt="York" className="w-full h-full object-cover" />
             </div>
-            <div className="leading-tight">
-              <div className="font-display text-[#DC2626] text-lg">HELADOS YORK</div>
-              <div className="font-script text-black text-base -mt-1">Santiago</div>
+            <div className="leading-tight min-w-0">
+              <div className="font-display text-[#DC2626] text-sm sm:text-lg truncate">HELADOS YORK</div>
+              <div className="font-script text-black text-sm sm:text-base -mt-1">Santiago</div>
             </div>
           </a>
-          <div className="hidden md:flex items-center gap-7 font-display text-sm">
+          <div className="hidden lg:flex items-center gap-7 font-display text-sm">
             <a href="#productos" className="hover:text-[#DC2626] transition" data-testid="nav-productos">PRODUCTOS</a>
             <a href="#mayorista" className="hover:text-[#DC2626] transition" data-testid="nav-mayorista">MAYORISTA</a>
             <a href="#como" className="hover:text-[#DC2626] transition" data-testid="nav-como">CÓMO PEDIR</a>
             <a href="#redes" className="hover:text-[#DC2626] transition" data-testid="nav-redes">REDES</a>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <Button
               data-testid="nav-cart-btn"
               onClick={sendCartWA}
               variant="outline"
-              className="border-2 border-black bg-white hover:bg-[#DC2626] hover:text-white font-display rounded-full"
+              className="border-2 border-black bg-white hover:bg-[#DC2626] hover:text-white font-display rounded-full px-2.5 sm:px-4 h-9 sm:h-10"
             >
-              <ShoppingCart className="w-4 h-4 mr-1" /> {cartCount}
+              <ShoppingCart className="w-4 h-4 sm:mr-1" /> <span>{cartCount}</span>
             </Button>
             <a
               href={waLink("¡Hola! Quiero información sobre los helados.")}
@@ -211,8 +211,9 @@ export default function Home() {
               rel="noreferrer"
               data-testid="nav-wa-btn"
             >
-              <Button className="bg-[#25D366] hover:bg-[#1da851] text-white border-2 border-black rounded-full font-display">
-                <MessageCircle className="w-4 h-4 mr-1" /> WhatsApp
+              <Button className="bg-[#25D366] hover:bg-[#1da851] text-white border-2 border-black rounded-full font-display px-2.5 sm:px-4 h-9 sm:h-10">
+                <MessageCircle className="w-4 h-4 sm:mr-1" />
+                <span className="hidden sm:inline">WhatsApp</span>
               </Button>
             </a>
           </div>
@@ -232,13 +233,13 @@ export default function Home() {
             </Badge>
 
             <h1
-              className="font-display mt-6 text-[#DC2626] text-stroke-white text-5xl sm:text-6xl lg:text-7xl leading-[0.95]"
+              className="font-display mt-6 text-[#DC2626] text-stroke-white-thin sm:text-stroke-white text-4xl sm:text-6xl lg:text-7xl leading-[0.95]"
               data-testid="hero-title"
             >
               EL HELADO <br />
               MÁS QUERIDO <br />
               <span className="text-black">DE PLAYA ANCHA</span> <br />
-              <span className="font-script text-black text-stroke-white text-6xl">ahora en tu barrio</span>
+              <span className="font-script text-black text-stroke-white-thin sm:text-stroke-white text-4xl sm:text-6xl">ahora en tu barrio</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-black/80 font-medium" data-testid="hero-sub">
@@ -324,7 +325,7 @@ export default function Home() {
               <Badge className="bg-black text-[#FFD60A] rounded-full font-display border-2 border-black" data-testid="prod-badge">
                 NUESTRO CATÁLOGO
               </Badge>
-              <h2 className="font-display text-5xl sm:text-6xl text-[#DC2626] text-stroke-white mt-3" data-testid="prod-title">
+              <h2 className="font-display text-4xl sm:text-6xl text-[#DC2626] text-stroke-white-thin sm:text-stroke-white mt-3" data-testid="prod-title">
                 ELIGE TU CAJA
               </h2>
               <p className="text-black/70 max-w-xl mt-2">
@@ -338,7 +339,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8" data-testid="boxes-grid">
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8" data-testid="boxes-grid">
             {BOXES.map((box) => (
               <Card
                 key={box.id}
@@ -350,15 +351,15 @@ export default function Home() {
                   style={{ background: box.accent }}
                 />
                 <CardContent className="p-0">
-                  <div className="grid grid-cols-5 gap-0">
+                  <div className="grid grid-cols-1 sm:grid-cols-5 gap-0">
                     <div
-                      className="col-span-2 relative aspect-square overflow-hidden flex items-end justify-center pb-4"
+                      className="sm:col-span-2 relative aspect-[2/1] sm:aspect-square overflow-hidden flex items-end justify-center pb-4 sm:pb-4"
                       style={{
                         background: `linear-gradient(160deg, ${box.bgFrom} 0%, ${box.bgTo} 100%)`,
                       }}
                     >
                       {/* CSS Paletas */}
-                      <div className="flex items-end gap-1 sm:gap-2">
+                      <div className="flex items-end gap-1.5 sm:gap-2">
                         {box.paletas.map((c, i) => (
                           <div
                             key={i}
@@ -370,10 +371,10 @@ export default function Home() {
                             }}
                           >
                             <div
-                              className="w-7 sm:w-9 h-20 sm:h-24 rounded-t-[18px] rounded-b-md border-[3px] border-black"
+                              className="w-8 sm:w-9 h-20 sm:h-24 rounded-t-[18px] rounded-b-md border-[3px] border-black"
                               style={{ background: c }}
                             />
-                            <div className="w-1.5 h-7 bg-amber-900 mx-auto -mt-1 rounded-b-sm border border-black/30" />
+                            <div className="w-1.5 h-6 sm:h-7 bg-amber-900 mx-auto -mt-1 rounded-b-sm border border-black/30" />
                           </div>
                         ))}
                       </div>
@@ -384,7 +385,7 @@ export default function Home() {
                         {box.id === "leche" ? "BASE LECHE" : "BASE AGUA"}
                       </div>
                     </div>
-                    <div className="col-span-3 p-6 flex flex-col">
+                    <div className="sm:col-span-3 p-5 sm:p-6 flex flex-col">
                       <div className="font-script text-xl text-black/60">{box.subtitle}</div>
                       <h3
                         className="font-display text-3xl"
@@ -497,7 +498,7 @@ export default function Home() {
               <Badge className="bg-[#FFD60A] text-black rounded-full font-display border-2 border-black" data-testid="mayor-badge">
                 <Truck className="w-4 h-4 mr-1" /> DESPACHO AL NORTE DE CHILE
               </Badge>
-              <h2 className="font-display text-5xl sm:text-6xl mt-4 text-[#FFD60A] text-stroke-white" data-testid="mayor-title">
+              <h2 className="font-display text-4xl sm:text-6xl mt-4 text-[#FFD60A] text-stroke-white-thin sm:text-stroke-white" data-testid="mayor-title">
                 ¿TIENES UN ALMACÉN <br /> EN EL NORTE?
               </h2>
               <p className="mt-4 text-white/90 max-w-xl text-lg">
@@ -585,7 +586,7 @@ export default function Home() {
             <Badge className="bg-black text-[#FFD60A] rounded-full font-display border-2 border-black" data-testid="how-badge">
               FÁCIL Y RÁPIDO
             </Badge>
-            <h2 className="font-display text-5xl sm:text-6xl mt-3 text-[#DC2626] text-stroke-white" data-testid="how-title">
+            <h2 className="font-display text-4xl sm:text-6xl mt-3 text-[#DC2626] text-stroke-white-thin sm:text-stroke-white" data-testid="how-title">
               CÓMO PEDIR
             </h2>
           </div>
@@ -717,7 +718,7 @@ export default function Home() {
             <Badge className="bg-black text-[#FFD60A] rounded-full font-display border-2 border-black" data-testid="rev-badge">
               <Heart className="w-4 h-4 mr-1 text-[#DC2626] fill-[#DC2626]" /> AMADO POR LA GENTE
             </Badge>
-            <h2 className="font-display text-5xl mt-3 text-[#DC2626] text-stroke-white" data-testid="rev-title">
+            <h2 className="font-display text-3xl sm:text-5xl mt-3 text-[#DC2626] text-stroke-white-thin sm:text-stroke-white" data-testid="rev-title">
               LO QUE DICEN <br/> NUESTROS CLIENTES
             </h2>
           </div>
@@ -768,7 +769,7 @@ export default function Home() {
               <Badge className="bg-[#FFD60A] text-black rounded-full font-display border-2 border-white" data-testid="social-badge">
                 SÍGUENOS
               </Badge>
-              <h2 className="font-display text-5xl sm:text-6xl mt-3 text-[#FFD60A] text-stroke-white" data-testid="social-title">
+              <h2 className="font-display text-3xl sm:text-6xl mt-3 text-[#FFD60A] text-stroke-white-thin sm:text-stroke-white" data-testid="social-title">
                 CONÉCTATE CON <br /> @yorkloverssantiago
               </h2>
               <p className="text-white/80 mt-4 max-w-md">
@@ -835,7 +836,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="bg-[#FFD60A] text-black rounded-3xl border-[6px] border-black p-8 sm:p-12 shadow-[10px_10px_0_0_#000] grid lg:grid-cols-3 gap-6 items-center" data-testid="footer-cta">
             <div className="lg:col-span-2">
-              <h3 className="font-display text-4xl sm:text-5xl text-[#DC2626] text-stroke-white">
+              <h3 className="font-display text-3xl sm:text-5xl text-[#DC2626] text-stroke-white-thin sm:text-stroke-white">
                 ¿LISTO PARA <br/> ENDULZAR EL DÍA? 🍦
               </h3>
               <p className="mt-3 text-black/80 max-w-lg">

@@ -320,19 +320,20 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent
-        className="max-w-4xl w-[95vw] max-h-[92vh] overflow-y-auto p-0 rounded-3xl border border-black/10 bg-white"
+        className="max-w-4xl w-[95vw] max-h-[92vh] overflow-y-auto overflow-x-hidden p-0 rounded-3xl border border-black/10 bg-white touch-pan-y"
         data-testid="product-dialog"
       >
         <DialogTitle className="sr-only">{product.title}</DialogTitle>
-        <div className="grid md:grid-cols-2 gap-0">
+        <div className="grid md:grid-cols-2 gap-0 max-w-full overflow-hidden">
           {/* Gallery */}
-          <div className="bg-[#FFF7CC] p-4 sm:p-6 relative">
+          <div className="bg-[#FFF7CC] p-4 sm:p-6 relative overflow-hidden">
             <BrandSticker />
-            <div className="relative aspect-square rounded-2xl overflow-hidden border border-black/15 bg-white">
+            <div className="relative aspect-square rounded-2xl overflow-hidden border border-black/15 bg-white max-w-full">
               <img
                 src={img(product.images[active])}
                 alt={product.title}
                 className="w-full h-full object-cover"
+                draggable="false"
               />
               {product.pending && (
                 <div className="absolute bottom-3 left-3 bg-black text-[#FFD60A] font-display text-xs px-3 py-1.5 rounded-full border-2 border-[#FFD60A] flex items-center gap-1.5">
@@ -363,7 +364,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
           </div>
 
           {/* Info */}
-          <div className="p-5 sm:p-7 relative">
+          <div className="p-5 sm:p-7 relative min-w-0">
             <button
               onClick={onClose}
               className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white border border-black/15 hover:bg-black hover:text-white grid place-items-center transition"

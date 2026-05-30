@@ -60,7 +60,7 @@ const PRODUCTS = [
     stock: "En stock",
     badge: "BASE LECHE",
     badgeColor: "#DC2626",
-    images: ["caja-leche-01.jpg", "caja-leche-02.jpg", "caja-leche-03.jpg"],
+    images: ["caja-leche-03.jpg", "lifestyle-tv.jpg", "produccion.jpg"],
     available: true,
     bullets: [
       "65 paletas por caja",
@@ -82,7 +82,7 @@ const PRODUCTS = [
     stock: "En stock",
     badge: "BASE AGUA",
     badgeColor: "#1D4ED8",
-    images: ["caja-agua-01.jpg", "caja-agua-02.jpg"],
+    images: ["paletas-mix-01.jpg", "paletas-mix-03.jpg"],
     available: true,
     bullets: [
       "65 paletas por caja",
@@ -104,7 +104,7 @@ const PRODUCTS = [
     stock: "Foto próximamente",
     badge: "DOBLE",
     badgeColor: "#7C3AED",
-    images: ["paletas-mix-01.jpg", "paletas-mix-02.jpg", "paletas-mix-03.jpg"],
+    images: ["paletas-mix-03.jpg", "paletas-mix-01.jpg"],
     available: true,
     pending: true,
     bullets: [
@@ -127,16 +127,20 @@ const DISTRIBUTOR_TYPES = [
 
 const DISTRIBUTOR_BENEFITS = [
   {
-    title: "Congeladora",
-    text: "Te entregamos la congeladora para que arranques sin invertir en equipo.",
+    title: "Congeladora sin costo",
+    text: "Te entregamos la congeladora en comodato para que arranques sin invertir en equipo.",
   },
   {
-    title: "Publicidad y material",
-    text: "Pendones, gigantografías y stickers para tu local. Marca lista para vender.",
+    title: "Publicidad y material POP",
+    text: "Pendones, gigantografías, stickers y material para tu local. Tu negocio se ve como punto oficial.",
   },
   {
-    title: "Acompañamiento",
-    text: "Te apoyamos en todo el proceso: pedidos, manejo de producto y reposición.",
+    title: "Reposición coordinada",
+    text: "Te visitamos para reponer producto y manejar la cadena de frío. Sin quiebres de stock.",
+  },
+  {
+    title: "Asesoría y acompañamiento",
+    text: "Te apoyamos con precios sugeridos, márgenes y consejos para vender más rápido.",
   },
 ];
 
@@ -554,11 +558,11 @@ export default function Home() {
               PRODUCTOS
             </a>
             <a
-              href="#distribuidores"
+              href="#quiero-vender"
               className="hover:text-[#DC2626] transition"
               data-testid="nav-distribuidores"
             >
-              DISTRIBUIDORES
+              QUIERO VENDER
             </a>
             <a
               href="#comunas"
@@ -646,13 +650,13 @@ export default function Home() {
                   VER PRODUCTOS <ChevronRight className="w-5 h-5 ml-1" />
                 </Button>
               </a>
-              <a href="#distribuidores">
+              <a href="#quiero-vender">
                 <Button
                   variant="outline"
                   className="bg-white hover:bg-black hover:text-white text-black border border-black/10 rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6"
                   data-testid="hero-distribuidor"
                 >
-                  QUIERO SER DISTRIBUIDOR
+                  QUIERO VENDER EN MI NEGOCIO
                 </Button>
               </a>
             </div>
@@ -756,9 +760,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DISTRIBUIDORES */}
+      {/* QUIERO VENDER */}
       <section
-        id="distribuidores"
+        id="quiero-vender"
         className="relative bg-[#DC2626] text-white py-16 sm:py-20 overflow-hidden"
       >
         <div
@@ -773,45 +777,52 @@ export default function Home() {
           <div className="grid lg:grid-cols-12 gap-8 sm:gap-10 items-start">
             <div className="lg:col-span-7">
               <Badge className="bg-[#FFD60A] text-black rounded-full font-display border border-black/15">
-                <Package className="w-4 h-4 mr-1" /> PROGRAMA DISTRIBUIDOR
+                <Package className="w-4 h-4 mr-1" /> PROGRAMA PARA NEGOCIOS
               </Badge>
               <h2
-                className="font-display text-3xl sm:text-5xl lg:text-6xl mt-4 text-[#FFD60A] text-stroke-white-thin sm:text-stroke-white"
+                className="font-display text-3xl sm:text-5xl lg:text-6xl mt-4 text-[#FFD60A]"
                 data-testid="distri-title"
               >
-                VENDE LA TÍA YORK <br />
-                EN TU NEGOCIO
+                ¿QUIERES VENDER <br />
+                LA TÍA YORK EN <br />
+                TU NEGOCIO?
               </h2>
-              <p className="mt-4 text-white/90 max-w-xl text-sm sm:text-base">
-                Si tienes un almacén, kiosco, confitería o distribuidora en
-                Santiago, conviértete en punto oficial. Llevamos producto,
-                congeladora y publicidad — tú solo te preocupas de vender.
+              <p className="mt-4 text-white/90 max-w-xl text-sm sm:text-base leading-relaxed">
+                Si tienes un almacén, kiosco, confitería, distribuidora o
+                liquidadora en Santiago, te ayudamos a vender desde el día uno.
+                <strong className="text-[#FFD60A]"> Nosotros nos
+                encargamos de todo lo necesario para que tú solo te dediques a vender</strong>.
               </p>
 
-              <div className="mt-6 grid sm:grid-cols-2 gap-3">
-                {DISTRIBUTOR_TYPES.map((t) => (
-                  <div
-                    key={t.name}
-                    className="bg-black/30 backdrop-blur rounded-xl border-2 border-[#FFD60A]/40 px-4 py-3 flex items-center gap-3"
-                    data-testid={`distri-type-${t.name.toLowerCase().replace(/\s/g, "-")}`}
-                  >
-                    <div className="w-10 h-10 bg-[#FFD60A] text-black rounded-full grid place-items-center border border-black/15 shrink-0">
-                      <t.icon className="w-5 h-5" />
+              <div className="mt-6">
+                <div className="font-display text-[#FFD60A] text-sm tracking-wider mb-3">
+                  PARA QUIÉN ES:
+                </div>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {DISTRIBUTOR_TYPES.map((t) => (
+                    <div
+                      key={t.name}
+                      className="bg-black/30 backdrop-blur rounded-xl border border-[#FFD60A]/30 px-4 py-3 flex items-center gap-3"
+                      data-testid={`distri-type-${t.name.toLowerCase().replace(/\s/g, "-")}`}
+                    >
+                      <div className="w-10 h-10 bg-[#FFD60A] text-[#DC2626] rounded-full grid place-items-center shrink-0">
+                        <t.icon className="w-5 h-5" />
+                      </div>
+                      <div className="font-display text-sm sm:text-base text-[#FFD60A]">
+                        {t.name}
+                      </div>
                     </div>
-                    <div className="font-display text-sm sm:text-base text-[#FFD60A]">
-                      {t.name}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               <div className="mt-7 bg-white text-black rounded-2xl border border-black/10 p-5 shadow-soft-lg">
-                <div className="font-display text-[#DC2626] text-sm">
+                <div className="font-display text-[#DC2626] text-sm tracking-wider">
                   PRECIOS MAYORISTAS · DESDE 30 CAJAS
                 </div>
-                <div className="mt-2 grid grid-cols-2 gap-3 text-sm">
+                <div className="mt-3 grid grid-cols-2 gap-3 items-center">
                   <div>
-                    <span className="font-display text-black">
+                    <span className="font-display text-black text-base">
                       Caja de Leche
                     </span>
                     <div className="text-xs text-black/60">
@@ -822,7 +833,7 @@ export default function Home() {
                     {fmtCLP(15000)}
                   </div>
                   <div>
-                    <span className="font-display text-black">
+                    <span className="font-display text-black text-base">
                       Caja de Agua
                     </span>
                     <div className="text-xs text-black/60">
@@ -837,48 +848,52 @@ export default function Home() {
 
               <a
                 href={waLink(
-                  "Hola! Tengo un negocio en Santiago y me interesa ser distribuidor de La Tía York. Mi negocio es: ____ Comuna: ____"
+                  "Hola! Quiero vender La Tía York en mi negocio. Mi negocio es: ____ Comuna: ____"
                 )}
                 target="_blank"
                 rel="noreferrer"
               >
                 <Button
-                  className="mt-6 bg-[#FFD60A] hover:bg-white text-black border border-black/10 rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6 shadow-soft-lg"
+                  className="mt-6 bg-[#FFD60A] hover:bg-white text-black rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6 shadow-soft-lg"
                   data-testid="distri-cta-wa"
                 >
-                  <MessageCircle className="w-5 h-5 mr-2" /> QUIERO SER
-                  DISTRIBUIDOR
+                  <MessageCircle className="w-5 h-5 mr-2" /> QUIERO VENDER EN MI
+                  NEGOCIO
                 </Button>
               </a>
             </div>
 
             <div className="lg:col-span-5 space-y-4">
               <div className="bg-white text-black rounded-3xl border border-black/10 overflow-hidden shadow-soft-lg">
-                <BrandSticker />
                 <img
-                  src={img("banner-distribuidor.jpg")}
-                  alt="Vende Helados York en tu negocio"
+                  src={img("local.jpg")}
+                  alt="Distribuidor La Tía York Santiago"
                   className="w-full aspect-square sm:aspect-[4/3] object-cover"
                 />
               </div>
-              <div className="grid gap-3">
-                {DISTRIBUTOR_BENEFITS.map((b) => (
-                  <div
-                    key={b.title}
-                    className="bg-black/30 backdrop-blur rounded-2xl border-2 border-[#FFD60A]/40 p-4"
-                    data-testid={`benefit-${b.title.toLowerCase().replace(/\s/g, "-")}`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <Check className="w-5 h-5 text-[#FFD60A] shrink-0" />
-                      <div className="font-display text-[#FFD60A]">
-                        {b.title}
+              <div>
+                <div className="font-display text-[#FFD60A] text-sm tracking-wider mb-3">
+                  TE DAMOS TODO PARA QUE VENDAS:
+                </div>
+                <div className="grid gap-3">
+                  {DISTRIBUTOR_BENEFITS.map((b) => (
+                    <div
+                      key={b.title}
+                      className="bg-black/30 backdrop-blur rounded-2xl border border-[#FFD60A]/30 p-4"
+                      data-testid={`benefit-${b.title.toLowerCase().replace(/\s/g, "-")}`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <Check className="w-5 h-5 text-[#FFD60A] shrink-0" />
+                        <div className="font-display text-[#FFD60A]">
+                          {b.title}
+                        </div>
                       </div>
+                      <p className="text-xs sm:text-sm text-white/80 mt-1 pl-7">
+                        {b.text}
+                      </p>
                     </div>
-                    <p className="text-xs sm:text-sm text-white/80 mt-1 pl-7">
-                      {b.text}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>

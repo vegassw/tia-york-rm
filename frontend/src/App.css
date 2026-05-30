@@ -3,11 +3,22 @@
   text-align: left;
 }
 
-/* Halftone/comic dotted pattern */
+/* Halftone — más suave para look formal */
 .halftone-bg {
   background-color: #FFD60A;
-  background-image: radial-gradient(rgba(220, 38, 38, 0.18) 1.5px, transparent 1.5px);
-  background-size: 16px 16px;
+  background-image: radial-gradient(rgba(220, 38, 38, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Soft branded shadow */
+.shadow-brand {
+  box-shadow: 0 10px 30px -10px rgba(220, 38, 38, 0.25), 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+.shadow-soft {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.shadow-soft-lg {
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.04);
 }
 
 .sunburst-bg {
@@ -60,24 +71,24 @@
 }
 
 .text-stroke-white {
-  -webkit-text-stroke: 3px #ffffff;
+  -webkit-text-stroke: 0;
   paint-order: stroke fill;
 }
 
 .text-stroke-white-thin {
-  -webkit-text-stroke: 1.5px #ffffff;
+  -webkit-text-stroke: 0;
   paint-order: stroke fill;
 }
 
 @media (min-width: 640px) {
   .sm\:text-stroke-white {
-    -webkit-text-stroke: 3px #ffffff;
+    -webkit-text-stroke: 0;
     paint-order: stroke fill;
   }
 }
 
 .text-stroke-red {
-  -webkit-text-stroke: 4px #DC2626;
+  -webkit-text-stroke: 0;
   paint-order: stroke fill;
 }
 
@@ -136,7 +147,7 @@
   color: #FFD60A;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 12px; height: 12px; }
-::-webkit-scrollbar-track { background: #FFD60A; }
-::-webkit-scrollbar-thumb { background: #DC2626; border-radius: 8px; border: 2px solid #FFD60A; }
+/* Custom scrollbar - sutil */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f5f5f5; }
+::-webkit-scrollbar-thumb { background: #DC2626; border-radius: 8px; border: 2px solid #f5f5f5; }

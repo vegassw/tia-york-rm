@@ -6,6 +6,7 @@ import {
   Truck,
   Snowflake,
   Music2,
+  Instagram,
   ChevronRight,
   X,
   CreditCard,
@@ -33,6 +34,8 @@ import {
 import { toast, Toaster } from "sonner";
 
 const WHATSAPP = "56987756938";
+const INSTAGRAM = "https://www.instagram.com/latiayork_santiago";
+const TIKTOK = "https://www.tiktok.com/@yorkloverssantiago";
 const BRAND_FULL = "La Tía York · Santiago";
 
 const waLink = (msg) =>
@@ -181,31 +184,27 @@ const PAYMENT_METHODS = [
   },
 ];
 
-/* ---------- Reusable: Brand sticker overlay ---------- */
+/* ---------- Reusable: Brand sticker overlay (bottom-left, sutil) ---------- */
 const BrandSticker = ({ small = false }) => (
   <div
     className={`absolute z-10 ${
-      small ? "top-2 right-2" : "top-3 right-3"
+      small ? "bottom-2 left-2" : "bottom-3 left-3"
     } pointer-events-none select-none`}
   >
     <div
-      className={`rounded-full bg-[#FFD60A] border-[3px] border-[#DC2626] shadow-[3px_3px_0_0_#000] flex items-center gap-2 ${
-        small ? "px-2.5 py-1" : "px-3 py-1.5"
+      className={`rounded-md bg-white/95 backdrop-blur-sm border border-[#DC2626]/30 shadow-sm flex items-center gap-1.5 ${
+        small ? "px-2 py-1" : "px-2.5 py-1.5"
       }`}
     >
       <span
-        className={`font-display ${
-          small ? "text-[10px]" : "text-xs"
-        } text-[#DC2626] tracking-wide`}
-      >
-        LA TÍA YORK
-      </span>
+        className={`inline-block w-1.5 h-1.5 rounded-full bg-[#DC2626]`}
+      />
       <span
-        className={`font-script ${
-          small ? "text-[11px]" : "text-sm"
-        } text-black -mt-0.5`}
+        className={`font-display ${
+          small ? "text-[9px]" : "text-[10px]"
+        } text-[#DC2626] tracking-wider uppercase`}
       >
-        Santiago
+        La Tía York · Santiago
       </span>
     </div>
   </div>
@@ -215,7 +214,7 @@ const BrandSticker = ({ small = false }) => (
 const ProductCard = ({ product, onView, onAdd }) => {
   return (
     <Card
-      className="group relative rounded-2xl border-[3px] border-black bg-white overflow-hidden shadow-[6px_6px_0_0_#000] hover:shadow-[8px_8px_0_0_#DC2626] hover:-translate-y-1 transition-all"
+      className="group relative rounded-2xl border border-black/10 bg-white overflow-hidden shadow-soft-lg hover:shadow-brand hover:-translate-y-1 transition-all"
       data-testid={`product-card-${product.id}`}
     >
       <div className="relative aspect-square bg-[#FFF7CC] overflow-hidden">
@@ -232,7 +231,7 @@ const ProductCard = ({ product, onView, onAdd }) => {
           loading="lazy"
         />
         <div
-          className="absolute bottom-3 left-3 rounded-full px-3 py-1 text-[11px] font-display border-2 border-black text-white"
+          className="absolute bottom-3 left-3 rounded-full px-3 py-1 text-[11px] font-display border border-black/15 text-white"
           style={{ background: product.badgeColor }}
         >
           {product.badge}
@@ -276,14 +275,14 @@ const ProductCard = ({ product, onView, onAdd }) => {
           <Button
             onClick={() => onView(product)}
             variant="outline"
-            className="flex-1 border-2 border-black bg-white hover:bg-black hover:text-white font-display text-xs sm:text-sm rounded-full h-10"
+            className="flex-1 border border-black/15 bg-white hover:bg-black hover:text-white font-display text-xs sm:text-sm rounded-full h-10"
             data-testid={`product-view-${product.id}`}
           >
             VER PRODUCTO
           </Button>
           <Button
             onClick={() => onAdd(product)}
-            className="bg-[#DC2626] hover:bg-[#b91c1c] text-white font-display text-xs sm:text-sm rounded-full h-10 px-4 border-2 border-black shadow-[3px_3px_0_0_#000]"
+            className="bg-[#DC2626] hover:bg-[#b91c1c] text-white font-display text-xs sm:text-sm rounded-full h-10 px-4 border border-black/15 shadow-soft"
             data-testid={`product-add-${product.id}`}
           >
             <ShoppingCart className="w-4 h-4 sm:mr-1" />
@@ -310,7 +309,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent
-        className="max-w-4xl w-[95vw] max-h-[92vh] overflow-y-auto p-0 rounded-3xl border-[3px] border-black bg-white"
+        className="max-w-4xl w-[95vw] max-h-[92vh] overflow-y-auto p-0 rounded-3xl border border-black/10 bg-white"
         data-testid="product-dialog"
       >
         <DialogTitle className="sr-only">{product.title}</DialogTitle>
@@ -318,7 +317,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
           {/* Gallery */}
           <div className="bg-[#FFF7CC] p-4 sm:p-6 relative">
             <BrandSticker />
-            <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-black bg-white">
+            <div className="relative aspect-square rounded-2xl overflow-hidden border border-black/15 bg-white">
               <img
                 src={img(product.images[active])}
                 alt={product.title}
@@ -338,7 +337,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
                   onClick={() => setActive(i)}
                   className={`shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition ${
                     active === i
-                      ? "border-[#DC2626] shadow-[3px_3px_0_0_#000]"
+                      ? "border-[#DC2626] shadow-soft"
                       : "border-black/30 hover:border-black"
                   }`}
                 >
@@ -356,14 +355,14 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
           <div className="p-5 sm:p-7 relative">
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white border-2 border-black hover:bg-black hover:text-white grid place-items-center transition"
+              className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white border border-black/15 hover:bg-black hover:text-white grid place-items-center transition"
               data-testid="dialog-close"
             >
               <X className="w-4 h-4" />
             </button>
 
             <Badge
-              className="text-white border-2 border-black rounded-full font-display"
+              className="text-white border border-black/15 rounded-full font-display"
               style={{ background: product.badgeColor }}
             >
               {product.badge}
@@ -373,7 +372,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
             </h2>
             <p className="text-sm text-black/60 mt-1">{product.subtitle}</p>
 
-            <div className="mt-5 p-4 bg-[#FFF7CC] rounded-2xl border-2 border-black">
+            <div className="mt-5 p-4 bg-[#FFF7CC] rounded-2xl border border-black/15">
               <div className="flex items-end justify-between flex-wrap gap-2">
                 <div>
                   <div className="text-[10px] uppercase tracking-wider text-black/60">
@@ -412,7 +411,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
 
             {/* Qty selector */}
             <div className="mt-6 flex items-center gap-3">
-              <div className="flex items-center border-2 border-black rounded-full overflow-hidden">
+              <div className="flex items-center border border-black/15 rounded-full overflow-hidden">
                 <button
                   onClick={() => setQty(Math.max(1, qty - 1))}
                   className="w-10 h-10 grid place-items-center hover:bg-black hover:text-white transition"
@@ -436,7 +435,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
                   onAdd(product, qty);
                   onClose();
                 }}
-                className="flex-1 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-display rounded-full h-12 border-2 border-black shadow-[4px_4px_0_0_#000]"
+                className="flex-1 bg-[#DC2626] hover:bg-[#b91c1c] text-white font-display rounded-full h-12 border border-black/15 shadow-soft"
                 data-testid="dialog-add-cart"
               >
                 <ShoppingCart className="w-5 h-5 mr-2" /> AÑADIR AL PEDIDO
@@ -453,7 +452,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
             >
               <Button
                 variant="outline"
-                className="w-full border-2 border-black hover:bg-[#25D366] hover:text-white hover:border-[#25D366] font-display rounded-full h-11"
+                className="w-full border border-black/15 hover:bg-[#25D366] hover:text-white hover:border-[#25D366] font-display rounded-full h-11"
                 data-testid="dialog-wa"
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
@@ -511,25 +510,25 @@ export default function Home() {
       <Toaster position="top-center" richColors />
 
       {/* TOP PROMO BAR */}
-      <div className="bg-[#DC2626] text-[#FFD60A] py-2 text-center font-display text-[11px] sm:text-sm border-b-2 border-black">
-        <span className="px-3">🚚 Despacho en Santiago RM</span>
-        <span className="hidden sm:inline text-[#FFD60A]/60">·</span>
+      <div className="bg-[#DC2626] text-[#FFD60A] py-2 text-center font-display text-[11px] sm:text-sm tracking-wide">
+        <span className="px-3">Despacho en Santiago RM</span>
+        <span className="hidden sm:inline text-[#FFD60A]/50">·</span>
         <span className="hidden sm:inline px-3">
-          📦 Precios mayoristas desde 30 cajas
+          Precios mayoristas desde 30 cajas
         </span>
-        <span className="text-[#FFD60A]/60">·</span>
-        <span className="px-3">🤍 La Tía York en Santiago</span>
+        <span className="text-[#FFD60A]/50">·</span>
+        <span className="px-3">La Tía York en Santiago</span>
       </div>
 
       {/* NAVBAR */}
-      <nav className="sticky top-0 z-40 bg-white border-b-2 border-black">
+      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-black/10">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
           <a
             href="#top"
             className="flex items-center gap-2 sm:gap-3 min-w-0"
             data-testid="nav-logo"
           >
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FFD60A] border-[3px] border-[#DC2626] overflow-hidden shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FFD60A] border-2 border-[#DC2626]/30 overflow-hidden shrink-0">
               <img
                 src={img("logo-tia.jpg")}
                 alt="La Tía York"
@@ -578,11 +577,21 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <a
+              href={INSTAGRAM}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:grid w-10 h-10 place-items-center rounded-full border border-black/15 hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] transition"
+              data-testid="nav-ig-btn"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
             <Button
               data-testid="nav-cart-btn"
               onClick={sendCartWA}
               variant="outline"
-              className="border-2 border-black bg-white hover:bg-[#DC2626] hover:text-white font-display rounded-full px-2.5 sm:px-4 h-9 sm:h-10 relative"
+              className="border border-black/15 bg-white hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] font-display rounded-full px-2.5 sm:px-4 h-9 sm:h-10 relative tracking-wide text-xs"
             >
               <ShoppingCart className="w-4 h-4 sm:mr-1" />
               <span>{cartCount}</span>
@@ -596,7 +605,7 @@ export default function Home() {
               rel="noreferrer"
               data-testid="nav-wa-btn"
             >
-              <Button className="bg-[#25D366] hover:bg-[#1da851] text-white border-2 border-black rounded-full font-display px-2.5 sm:px-4 h-9 sm:h-10">
+              <Button className="bg-[#25D366] hover:bg-[#1da851] text-white rounded-full font-display px-2.5 sm:px-4 h-9 sm:h-10 tracking-wide text-xs">
                 <MessageCircle className="w-4 h-4 sm:mr-1" />
                 <span className="hidden sm:inline">WhatsApp</span>
               </Button>
@@ -612,7 +621,7 @@ export default function Home() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-16 sm:pb-20 grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 relative z-10">
-            <Badge className="bg-[#DC2626] text-[#FFD60A] border-2 border-black rounded-full font-display px-3 py-1">
+            <Badge className="bg-[#DC2626] text-[#FFD60A] border border-black/15 rounded-full font-display px-3 py-1">
               🍦 HELADOS ARTESANALES · PORTEÑO DE CORAZÓN
             </Badge>
             <h1
@@ -631,7 +640,7 @@ export default function Home() {
             <div className="mt-7 flex flex-wrap gap-3">
               <a href="#productos">
                 <Button
-                  className="bg-[#DC2626] hover:bg-[#b91c1c] text-white border-[3px] border-black rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6 shadow-[5px_5px_0_0_#000]"
+                  className="bg-[#DC2626] hover:bg-[#b91c1c] text-white border border-black/10 rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6 shadow-soft-lg"
                   data-testid="hero-ver-productos"
                 >
                   VER PRODUCTOS <ChevronRight className="w-5 h-5 ml-1" />
@@ -640,7 +649,7 @@ export default function Home() {
               <a href="#distribuidores">
                 <Button
                   variant="outline"
-                  className="bg-white hover:bg-black hover:text-white text-black border-[3px] border-black rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6"
+                  className="bg-white hover:bg-black hover:text-white text-black border border-black/10 rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6"
                   data-testid="hero-distribuidor"
                 >
                   QUIERO SER DISTRIBUIDOR
@@ -655,21 +664,34 @@ export default function Home() {
               <img
                 src={img("camion.jpg")}
                 alt="Camión Helados York Santiago"
-                className="w-full rounded-3xl border-[5px] border-black shadow-[10px_10px_0_0_#DC2626]"
+                className="w-full rounded-3xl border border-black/15 shadow-brand"
               />
-              <div className="absolute -bottom-4 -left-4 bg-white border-[3px] border-black rounded-2xl px-4 py-3 shadow-[4px_4px_0_0_#000]">
-                <div className="font-display text-xs text-black/60">
-                  SÍGUENOS EN
+              <div className="absolute -bottom-5 -right-3 sm:-right-5 bg-white border border-black/10 rounded-2xl px-4 py-3 shadow-soft-lg">
+                <div className="font-display text-[10px] tracking-wider text-black/50 uppercase">
+                  Síguenos
                 </div>
-                <a
-                  href="https://www.tiktok.com/@yorkloverssantiago"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-display text-[#DC2626] text-sm flex items-center gap-1.5"
-                >
-                  <Music2 className="w-3.5 h-3.5" />
-                  @yorkloverssantiago
-                </a>
+                <div className="mt-1 flex items-center gap-2.5">
+                  <a
+                    href={INSTAGRAM}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-display text-[#DC2626] text-xs sm:text-sm flex items-center gap-1.5 hover:text-black transition"
+                  >
+                    <Instagram className="w-3.5 h-3.5" />
+                    @latiayork_santiago
+                  </a>
+                  <span className="text-black/30">·</span>
+                  <a
+                    href={TIKTOK}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-display text-black/70 text-xs flex items-center gap-1 hover:text-[#DC2626] transition"
+                    aria-label="TikTok"
+                  >
+                    <Music2 className="w-3.5 h-3.5" />
+                    TikTok
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -681,7 +703,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
             <div>
-              <Badge className="bg-black text-[#FFD60A] rounded-full font-display border-2 border-black">
+              <Badge className="bg-black text-[#FFD60A] rounded-full font-display border border-black/15">
                 NUESTRO CATÁLOGO
               </Badge>
               <h2
@@ -714,7 +736,7 @@ export default function Home() {
 
           {cartCount > 0 && (
             <div
-              className="mt-8 bg-black text-[#FFD60A] rounded-2xl border-[3px] border-[#DC2626] p-4 sm:p-5 flex flex-wrap justify-between items-center gap-3 shadow-[6px_6px_0_0_#DC2626]"
+              className="mt-8 bg-black text-[#FFD60A] rounded-2xl border-[3px] border-[#DC2626] p-4 sm:p-5 flex flex-wrap justify-between items-center gap-3 shadow-brand"
               data-testid="cart-strip"
             >
               <div className="font-display text-sm sm:text-base">
@@ -750,7 +772,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <div className="grid lg:grid-cols-12 gap-8 sm:gap-10 items-start">
             <div className="lg:col-span-7">
-              <Badge className="bg-[#FFD60A] text-black rounded-full font-display border-2 border-black">
+              <Badge className="bg-[#FFD60A] text-black rounded-full font-display border border-black/15">
                 <Package className="w-4 h-4 mr-1" /> PROGRAMA DISTRIBUIDOR
               </Badge>
               <h2
@@ -773,7 +795,7 @@ export default function Home() {
                     className="bg-black/30 backdrop-blur rounded-xl border-2 border-[#FFD60A]/40 px-4 py-3 flex items-center gap-3"
                     data-testid={`distri-type-${t.name.toLowerCase().replace(/\s/g, "-")}`}
                   >
-                    <div className="w-10 h-10 bg-[#FFD60A] text-black rounded-full grid place-items-center border-2 border-black shrink-0">
+                    <div className="w-10 h-10 bg-[#FFD60A] text-black rounded-full grid place-items-center border border-black/15 shrink-0">
                       <t.icon className="w-5 h-5" />
                     </div>
                     <div className="font-display text-sm sm:text-base text-[#FFD60A]">
@@ -783,7 +805,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="mt-7 bg-white text-black rounded-2xl border-[3px] border-black p-5 shadow-[6px_6px_0_0_#000]">
+              <div className="mt-7 bg-white text-black rounded-2xl border border-black/10 p-5 shadow-soft-lg">
                 <div className="font-display text-[#DC2626] text-sm">
                   PRECIOS MAYORISTAS · DESDE 30 CAJAS
                 </div>
@@ -821,7 +843,7 @@ export default function Home() {
                 rel="noreferrer"
               >
                 <Button
-                  className="mt-6 bg-[#FFD60A] hover:bg-white text-black border-[3px] border-black rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6 shadow-[5px_5px_0_0_#000]"
+                  className="mt-6 bg-[#FFD60A] hover:bg-white text-black border border-black/10 rounded-full font-display text-sm sm:text-base px-6 py-5 sm:py-6 shadow-soft-lg"
                   data-testid="distri-cta-wa"
                 >
                   <MessageCircle className="w-5 h-5 mr-2" /> QUIERO SER
@@ -831,7 +853,7 @@ export default function Home() {
             </div>
 
             <div className="lg:col-span-5 space-y-4">
-              <div className="bg-white text-black rounded-3xl border-[4px] border-black overflow-hidden shadow-[8px_8px_0_0_#FFD60A]">
+              <div className="bg-white text-black rounded-3xl border border-black/10 overflow-hidden shadow-soft-lg">
                 <BrandSticker />
                 <img
                   src={img("banner-distribuidor.jpg")}
@@ -867,7 +889,7 @@ export default function Home() {
       <section id="comunas" className="bg-[#FFD60A] py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <Badge className="bg-black text-[#FFD60A] rounded-full font-display border-2 border-black">
+            <Badge className="bg-black text-[#FFD60A] rounded-full font-display border border-black/15">
               <MapPin className="w-4 h-4 mr-1" /> COBERTURA SANTIAGO RM
             </Badge>
             <h2
@@ -886,7 +908,7 @@ export default function Home() {
             {COMUNAS.map((c) => (
               <div
                 key={c}
-                className="bg-white rounded-xl border-2 border-black px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2 hover:bg-[#DC2626] hover:text-white transition group cursor-default"
+                className="bg-white rounded-xl border border-black/15 px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2 hover:bg-[#DC2626] hover:text-white transition group cursor-default"
                 data-testid={`comuna-${c.toLowerCase().replace(/\s/g, "-")}`}
               >
                 <MapPin className="w-4 h-4 text-[#DC2626] group-hover:text-white shrink-0" />
@@ -903,7 +925,7 @@ export default function Home() {
       <section id="pagos" className="bg-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <Badge className="bg-black text-[#FFD60A] rounded-full font-display border-2 border-black">
+            <Badge className="bg-black text-[#FFD60A] rounded-full font-display border border-black/15">
               MÉTODOS DE PAGO
             </Badge>
             <h2
@@ -918,11 +940,11 @@ export default function Home() {
             {PAYMENT_METHODS.map((p) => (
               <Card
                 key={p.title}
-                className="rounded-2xl border-[3px] border-black bg-white shadow-[6px_6px_0_0_#000] hover:-translate-y-1 transition"
+                className="rounded-2xl border border-black/10 bg-white shadow-soft-lg hover:-translate-y-1 transition"
                 data-testid={`pago-${p.title.toLowerCase().replace(/\s/g, "-")}`}
               >
                 <CardContent className="p-6">
-                  <div className="w-14 h-14 rounded-2xl bg-[#FFD60A] grid place-items-center border-[3px] border-black">
+                  <div className="w-14 h-14 rounded-2xl bg-[#FFD60A] grid place-items-center border border-black/10">
                     <p.icon className="w-7 h-7 text-[#DC2626]" />
                   </div>
                   <h3 className="font-display text-xl mt-4">{p.title}</h3>
@@ -938,7 +960,7 @@ export default function Home() {
       <section className="bg-[#FFF7CC] py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <Badge className="bg-[#DC2626] text-[#FFD60A] rounded-full font-display border-2 border-black">
+            <Badge className="bg-[#DC2626] text-[#FFD60A] rounded-full font-display border border-black/15">
               EN LAS CALLES DE SANTIAGO
             </Badge>
             <h2 className="font-display text-3xl sm:text-5xl mt-3 text-[#DC2626] text-stroke-white-thin sm:text-stroke-white">
@@ -955,7 +977,7 @@ export default function Home() {
             ].map((it, i) => (
               <div
                 key={i}
-                className="group relative aspect-square rounded-2xl overflow-hidden border-[3px] border-black shadow-[5px_5px_0_0_#000]"
+                className="group relative aspect-square rounded-2xl overflow-hidden border border-black/10 shadow-soft-lg"
                 data-testid={`gallery-${i}`}
               >
                 <BrandSticker small />
@@ -980,7 +1002,7 @@ export default function Home() {
       <footer className="bg-[#DC2626] text-white pt-14 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div
-            className="bg-[#FFD60A] text-black rounded-3xl border-[5px] border-black p-7 sm:p-10 shadow-[8px_8px_0_0_#000] grid lg:grid-cols-3 gap-6 items-center"
+            className="bg-[#FFD60A] text-black rounded-3xl border border-black/15 p-7 sm:p-10 shadow-soft-lg grid lg:grid-cols-3 gap-6 items-center"
             data-testid="footer-cta"
           >
             <div className="lg:col-span-2">
@@ -1001,7 +1023,7 @@ export default function Home() {
               className="lg:justify-self-end"
             >
               <Button
-                className="bg-[#25D366] hover:bg-[#1da851] text-white rounded-full font-display border-[3px] border-black text-base sm:text-lg px-6 sm:px-8 py-6 shadow-[5px_5px_0_0_#000]"
+                className="bg-[#25D366] hover:bg-[#1da851] text-white rounded-full font-display border border-black/10 text-base sm:text-lg px-6 sm:px-8 py-6 shadow-soft-lg"
                 data-testid="footer-wa-cta"
               >
                 <MessageCircle className="w-5 h-5 mr-2" /> +56 9 8775 6938
@@ -1012,7 +1034,7 @@ export default function Home() {
           <div className="mt-10 grid sm:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-full bg-[#FFD60A] border-[3px] border-black overflow-hidden">
+                <div className="w-14 h-14 rounded-full bg-[#FFD60A] border border-black/10 overflow-hidden">
                   <img
                     src={img("logo-tia.jpg")}
                     alt="logo"
@@ -1050,14 +1072,25 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="font-display text-[#FFD60A] mb-3">SÍGUENOS</div>
+              <div className="font-display text-[#FFD60A] mb-3 text-sm tracking-wider">SÍGUENOS</div>
               <div className="flex gap-3">
                 <a
-                  href="https://www.tiktok.com/@yorkloverssantiago"
+                  href={INSTAGRAM}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-11 h-11 bg-black rounded-full grid place-items-center border-2 border-[#FFD60A] hover:bg-[#FFD60A] hover:text-black transition"
+                  className="w-11 h-11 bg-white text-[#DC2626] rounded-full grid place-items-center hover:bg-[#FFD60A] transition"
+                  data-testid="footer-ig"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href={TIKTOK}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-11 h-11 bg-black rounded-full grid place-items-center border border-[#FFD60A]/40 hover:bg-[#FFD60A] hover:text-black transition"
                   data-testid="footer-tiktok"
+                  aria-label="TikTok"
                 >
                   <Music2 className="w-5 h-5" />
                 </a>
@@ -1065,13 +1098,19 @@ export default function Home() {
                   href={waLink("Hola!")}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-11 h-11 bg-[#25D366] rounded-full grid place-items-center border-2 border-white"
+                  className="w-11 h-11 bg-[#25D366] rounded-full grid place-items-center hover:opacity-90 transition"
                   data-testid="footer-wa"
+                  aria-label="WhatsApp"
                 >
                   <MessageCircle className="w-5 h-5" />
                 </a>
               </div>
-              <p className="text-xs text-white/60 mt-3">@yorkloverssantiago</p>
+              <p className="text-xs text-white/70 mt-3">
+                Instagram <span className="text-[#FFD60A]">@latiayork_santiago</span>
+              </p>
+              <p className="text-xs text-white/60">
+                TikTok <span className="text-[#FFD60A]">@yorkloverssantiago</span>
+              </p>
             </div>
           </div>
 
@@ -1093,7 +1132,7 @@ export default function Home() {
         className="fixed bottom-4 right-4 z-50"
         data-testid="floating-wa"
       >
-        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] rounded-full grid place-items-center border-[3px] border-white shadow-[5px_5px_0_0_#000] hover:scale-110 transition">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] rounded-full grid place-items-center border-2 border-white shadow-soft-lg hover:scale-110 transition">
           <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
         </div>
       </a>

@@ -22,6 +22,7 @@ import {
   ImageOff,
   Plus,
   Minus,
+  Trash2,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
@@ -31,6 +32,12 @@ import {
   DialogContent,
   DialogTitle,
 } from "../components/ui/dialog";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "../components/ui/sheet";
 import { toast, Toaster } from "sonner";
 
 const WHATSAPP = "56987756938";
@@ -474,13 +481,37 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
 export default function Home() {
   const [cart, setCart] = useState({});
   const [openProduct, setOpenProduct] = useState(null);
+  const [cartOpen, setCartOpen] = useState(false);
 
   const addToCart = (product, qty = 1) => {
     setCart((c) => ({ ...c, [product.id]: (c[product.id] || 0) + qty }));
     toast.success(`${qty} × ${product.title} añadido`, {
-      description: "Tu pedido se enviará por WhatsApp",
+      description: "Abre el carrito para revisar tu pedido",
       duration: 1800,
     });
+  };
+
+  const updateQty = (id, qty) => {
+    setCart((c) => {
+      const next = { ...c };
+      if (qty <= 0) delete next[id];
+      else next[id] = qty;
+      return next;
+    });
+  };
+
+  const removeItem = (id) => {
+    setCart((c) => {
+      const next = { ...c };
+      delete next[id];
+      return next;
+    });
+    toast("Producto eliminado del pedido");
+  };
+
+  const clearCart = () => {
+    setCart({});
+    toast("Carrito vaciado");
   };
 
   const cartCount = Object.values(cart).reduce((a, b) => a + b, 0);
@@ -488,6 +519,8 @@ export default function Home() {
     const it = PRODUCTS.find((b) => b.id === id);
     return sum + (it ? it.price * q : 0);
   }, 0);
+
+  const openCart = () => setCartOpen(true);
 
   const sendCartWA = () => {
     if (cartCount === 0) {
@@ -593,7 +626,7 @@ export default function Home() {
             </a>
             <Button
               data-testid="nav-cart-btn"
-              onClick={sendCartWA}
+              onClick={openCart}
               variant="outline"
               className="border border-black/15 bg-white hover:bg-[#DC2626] hover:text-white hover:border-[#DC2626] font-display rounded-full px-2.5 sm:px-4 h-9 sm:h-10 relative tracking-wide text-xs"
             >
@@ -748,12 +781,11 @@ export default function Home() {
                 Total {fmtCLP(cartTotal)}
               </div>
               <Button
-                onClick={sendCartWA}
+                onClick={openCart}
                 className="bg-[#25D366] hover:bg-[#1da851] text-white rounded-full font-display border-2 border-white text-xs sm:text-sm"
                 data-testid="cart-send-wa"
               >
-                <MessageCircle className="w-4 h-4 mr-1" /> ENVIAR PEDIDO POR
-                WHATSAPP
+                <ShoppingCart className="w-4 h-4 mr-1" /> VER CARRITO Y ENVIAR
               </Button>
             </div>
           )}
@@ -1159,6 +1191,162 @@ export default function Home() {
         onClose={() => setOpenProduct(null)}
         onAdd={addToCart}
       />
+
+      {/* CART SHEET */}
+      <Sheet open={cartOpen} onOpenChange={setCartOpen}>
+        <SheetContent
+          side="right"
+          className="w-full sm:max-w-md p-0 flex flex-col bg-white"
+          data-testid="cart-sheet"
+        >
+          <SheetHeader className="px-5 pt-6 pb-4 border-b border-black/10">
+            <SheetTitle className="font-display text-2xl text-[#DC2626] flex items-center gap-2">
+              <ShoppingCart className="w-6 h-6" />
+              Mi pedido
+              {cartCount > 0 && (
+                <span className="text-sm text-black/50 font-normal">
+                  ({cartCount} {cartCount === 1 ? "producto" : "productos"})
+                </span>
+              )}
+            </SheetTitle>
+          </SheetHeader>
+
+          {/* Items */}
+          <div className="flex-1 overflow-y-auto px-5 py-4">
+            {cartCount === 0 ? (
+              <div className="h-full flex flex-col items-center justify-center text-center py-10">
+                <div className="w-20 h-20 rounded-full bg-[#FFF7CC] grid place-items-center mb-4">
+                  <ShoppingCart className="w-9 h-9 text-[#DC2626]/40" />
+                </div>
+                <p className="font-display text-lg text-black/70">
+                  Tu carrito está vacío
+                </p>
+                <p className="text-sm text-black/50 mt-1">
+                  Agrega productos desde el catálogo
+                </p>
+                <Button
+                  onClick={() => setCartOpen(false)}
+                  className="mt-6 bg-[#DC2626] hover:bg-[#b91c1c] text-white rounded-full font-display"
+                  data-testid="cart-empty-cta"
+                >
+                  Ver productos
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {Object.entries(cart).map(([id, qty]) => {
+                  const p = PRODUCTS.find((x) => x.id === id);
+                  if (!p) return null;
+                  return (
+                    <div
+                      key={id}
+                      className="flex gap-3 p-3 rounded-2xl border border-black/10 bg-[#FAFAFA]"
+                      data-testid={`cart-item-${id}`}
+                    >
+                      <div className="w-20 h-20 rounded-xl overflow-hidden bg-[#FFF7CC] shrink-0">
+                        <img
+                          src={img(p.images[0])}
+                          alt={p.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <div className="font-display text-[#DC2626] text-sm sm:text-base leading-tight truncate">
+                              {p.title}
+                            </div>
+                            <div className="text-[11px] text-black/50 mt-0.5">
+                              {fmtCLP(p.price)} × {qty}
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => removeItem(id)}
+                            className="shrink-0 w-7 h-7 rounded-full grid place-items-center text-black/40 hover:bg-[#DC2626] hover:text-white transition"
+                            data-testid={`cart-remove-${id}`}
+                            aria-label="Eliminar"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                        <div className="mt-2 flex items-center justify-between gap-2">
+                          <div className="flex items-center border border-black/15 rounded-full overflow-hidden">
+                            <button
+                              onClick={() => updateQty(id, qty - 1)}
+                              className="w-7 h-7 grid place-items-center hover:bg-black hover:text-white transition"
+                              data-testid={`cart-minus-${id}`}
+                              aria-label="Restar"
+                            >
+                              <Minus className="w-3.5 h-3.5" />
+                            </button>
+                            <div className="w-8 text-center font-display text-sm">
+                              {qty}
+                            </div>
+                            <button
+                              onClick={() => updateQty(id, qty + 1)}
+                              className="w-7 h-7 grid place-items-center hover:bg-black hover:text-white transition"
+                              data-testid={`cart-plus-${id}`}
+                              aria-label="Sumar"
+                            >
+                              <Plus className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                          <div className="font-display text-black text-sm sm:text-base">
+                            {fmtCLP(p.price * qty)}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                <button
+                  onClick={clearCart}
+                  className="w-full mt-2 text-xs text-black/50 hover:text-[#DC2626] transition flex items-center justify-center gap-1.5 py-2"
+                  data-testid="cart-clear"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  Vaciar carrito
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Footer with total + CTA */}
+          {cartCount > 0 && (
+            <div className="border-t border-black/10 p-5 bg-white">
+              <div className="flex items-end justify-between mb-4">
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-black/50">
+                    Total estimado
+                  </div>
+                  <div className="font-display text-3xl text-[#DC2626]">
+                    {fmtCLP(cartTotal)}
+                  </div>
+                </div>
+                <div className="text-[10px] text-black/50 text-right max-w-[50%]">
+                  Confirmamos disponibilidad y despacho por WhatsApp
+                </div>
+              </div>
+              <Button
+                onClick={sendCartWA}
+                className="w-full bg-[#25D366] hover:bg-[#1da851] text-white rounded-full font-display h-12 shadow-soft-lg"
+                data-testid="cart-checkout"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                ENVIAR PEDIDO POR WHATSAPP
+              </Button>
+              <button
+                onClick={() => setCartOpen(false)}
+                className="w-full mt-2 text-xs text-black/50 hover:text-black transition py-1"
+                data-testid="cart-continue"
+              >
+                Seguir comprando
+              </button>
+            </div>
+          )}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

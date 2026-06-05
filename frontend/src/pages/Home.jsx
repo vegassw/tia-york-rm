@@ -135,11 +135,11 @@ const DISTRIBUTOR_TYPES = [
 const DISTRIBUTOR_BENEFITS = [
   {
     title: "Congeladora sin costo",
-    text: "Te entregamos la congeladora en comodato para que arranques sin invertir en equipo.",
+    text: "Para Distribuidoras, Confiterías y Liquidadoras: te entregamos la congeladora en comodato para que arranques sin invertir en equipo.",
   },
   {
-    title: "Publicidad y material POP",
-    text: "Pendones, gigantografías, stickers y material para tu local. Tu negocio se ve como punto oficial.",
+    title: "Afiches y pendones York",
+    text: "Te damos afiches, pendones y stickers de Helados York para que tu negocio se vea como punto oficial.",
   },
   {
     title: "Reposición coordinada",
@@ -147,8 +147,15 @@ const DISTRIBUTOR_BENEFITS = [
   },
   {
     title: "Asesoría y acompañamiento",
-    text: "Te apoyamos con precios sugeridos, márgenes y consejos para vender más rápido.",
+    text: "Te apoyamos con precios sugeridos, márgenes y consejos para que vendas más rápido.",
   },
+];
+
+const SELLING_FEATURES = [
+  { title: "Producto de calidad", text: "Receta porteña artesanal", icon: Package },
+  { title: "Sabores irresistibles", text: "5 sabores que enamoran", icon: Snowflake },
+  { title: "Atención personalizada", text: "Te acompañamos siempre", icon: HandCoins },
+  { title: "Despacho a todo Santiago", text: "Cadena de frío garantizada", icon: Truck },
 ];
 
 const COMUNAS = [
@@ -820,11 +827,12 @@ export default function Home() {
                 LA TÍA YORK EN <br />
                 TU NEGOCIO?
               </h2>
-              <p className="mt-4 text-white/90 max-w-xl text-sm sm:text-base leading-relaxed">
-                Si tienes un almacén, kiosco, confitería, distribuidora o
-                liquidadora en Santiago, te ayudamos a vender desde el día uno.
-                <strong className="text-[#FFD60A]"> Nosotros nos
-                encargamos de todo lo necesario para que tú solo te dediques a vender</strong>.
+              <p className="mt-4 text-white/95 max-w-xl text-sm sm:text-base leading-relaxed">
+                Haz que tu negocio sea la <strong className="text-[#FFD60A]">sensación del barrio</strong> vendiendo los famosos Helados York.
+                Si tienes un almacén, kiosco, confitería, distribuidora o liquidadora en Santiago, te ayudamos a vender desde el día uno.
+                <span className="block mt-2 font-display text-[#FFD60A] text-xs sm:text-sm tracking-wider">
+                  NOSOTROS NOS ENCARGAMOS DE TODO PARA QUE TÚ SOLO TE DEDIQUES A VENDER.
+                </span>
               </p>
 
               <div className="mt-6">
@@ -928,6 +936,31 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* SELLING FEATURES STRIP (estilo flyer) */}
+          <div className="mt-10 sm:mt-14 bg-white text-black rounded-2xl border border-black/10 shadow-soft-lg overflow-hidden">
+            <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-black/10">
+              {SELLING_FEATURES.map((f) => (
+                <div
+                  key={f.title}
+                  className="p-4 sm:p-5 flex items-center gap-3"
+                  data-testid={`feature-${f.title.toLowerCase().replace(/\s/g, "-")}`}
+                >
+                  <div className="w-11 h-11 rounded-xl bg-[#FFF7CC] grid place-items-center shrink-0">
+                    <f.icon className="w-5 h-5 text-[#DC2626]" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-display text-[11px] sm:text-sm text-[#DC2626] tracking-wide uppercase leading-tight">
+                      {f.title}
+                    </div>
+                    <div className="text-[10px] sm:text-xs text-black/60 mt-0.5">
+                      {f.text}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

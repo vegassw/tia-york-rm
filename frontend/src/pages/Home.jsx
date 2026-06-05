@@ -8,7 +8,6 @@ import {
   Music2,
   Instagram,
   ChevronRight,
-  X,
   CreditCard,
   HandCoins,
   Wallet,
@@ -371,15 +370,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
           </div>
 
           {/* Info */}
-          <div className="p-5 sm:p-7 relative min-w-0">
-            <button
-              onClick={onClose}
-              className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white border border-black/15 hover:bg-black hover:text-white grid place-items-center transition"
-              data-testid="dialog-close"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
+          <div className="p-5 sm:p-7 pt-14 sm:pt-7 relative min-w-0">
             <Badge
               className="text-white border border-black/15 rounded-full font-display"
               style={{ background: product.badgeColor }}
@@ -1200,7 +1191,7 @@ export default function Home() {
               © {new Date().getFullYear()} La Tía York Santiago · Porteño de
               corazón
             </div>
-            <div>Mockup visual · sin transacciones reales</div>
+            <div>Despacho en Región Metropolitana</div>
           </div>
         </div>
       </footer>

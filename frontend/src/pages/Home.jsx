@@ -1045,7 +1045,7 @@ export default function Home() {
               { src: "local.jpg", label: "En tu local" },
               { src: "lifestyle-tv.jpg", label: "En tu casa" },
               { src: "produccion.jpg", label: "Hechos a mano" },
-              { src: "local-02.jpg", label: "Listos para repartir" },
+              { src: "paleta-frutilla.jpg", label: "Sabor real" },
             ].map((it, i) => (
               <div
                 key={i}

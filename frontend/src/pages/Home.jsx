@@ -741,7 +741,7 @@ export default function Home() {
 
                 <div className="relative rounded-3xl overflow-hidden border border-black/15 shadow-brand">
                   <img
-                    src={img("camion-nuevo.jpg")}
+                    src={img("camion-2.png")}
                     alt="Camión Helados York en Santiago"
                     className="w-full block"
                     draggable="false"

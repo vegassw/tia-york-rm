@@ -654,8 +654,8 @@ export default function Home() {
         id="top"
         className="relative bg-[#FFD60A] halftone-bg overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-16 sm:pb-20 grid lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-16 sm:pb-20 grid lg:grid-cols-12 gap-6 lg:gap-2 items-center">
+          <div className="lg:col-span-5 relative z-10">
             <Badge className="bg-[#DC2626] text-[#FFD60A] border border-black/15 rounded-full font-display px-3 py-1">
               🍦 HELADOS ARTESANALES · PORTEÑO DE CORAZÓN
             </Badge>
@@ -693,8 +693,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative">
-            <div className="relative group [perspective:1200px]">
+          <div className="lg:col-span-7 relative">
+            <div className="relative group [perspective:1200px] lg:-mr-12">
               {/* Glow multicolor pulsante detrás */}
               <div
                 aria-hidden="true"
@@ -736,7 +736,7 @@ export default function Home() {
               <span className="absolute bottom-12 right-6 z-20 text-[#FFD60A] text-xl sparkle drop-shadow" aria-hidden="true">✦</span>
 
               {/* Container con float sutil + hover tilt */}
-              <div className="relative floaty-subtle transition-transform duration-500 group-hover:scale-[1.02] group-hover:-rotate-1 will-change-transform lg:scale-[1.15] lg:origin-center">
+              <div className="relative floaty-subtle transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1 will-change-transform lg:scale-[1.35] lg:origin-center">
                 <BrandSticker />
 
                 <div className="relative rounded-3xl overflow-hidden border border-black/15 shadow-brand">

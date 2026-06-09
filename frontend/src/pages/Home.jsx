@@ -736,7 +736,7 @@ export default function Home() {
               <span className="absolute bottom-12 right-6 z-20 text-[#FFD60A] text-xl sparkle drop-shadow" aria-hidden="true">✦</span>
 
               {/* Container con float sutil + hover tilt */}
-              <div className="relative floaty-subtle transition-transform duration-500 group-hover:scale-[1.02] group-hover:-rotate-1 will-change-transform">
+              <div className="relative floaty-subtle transition-transform duration-500 group-hover:scale-[1.02] group-hover:-rotate-1 will-change-transform lg:scale-[1.15] lg:origin-center">
                 <BrandSticker />
 
                 <div className="relative rounded-3xl overflow-hidden border border-black/15 shadow-brand">

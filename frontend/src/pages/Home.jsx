@@ -88,7 +88,7 @@ const PRODUCTS = [
     stock: "En stock",
     badge: "BASE AGUA",
     badgeColor: "#1D4ED8",
-    images: ["paletas-mix-01.jpg", "paletas-mix-03.jpg"],
+    images: ["caja-agua-real.jpg", "paletas-mix-01.jpg", "paletas-mix-03.jpg"],
     available: true,
     bullets: [
       "65 paletas por caja",
@@ -393,7 +393,7 @@ const ProductDialog = ({ product, open, onClose, onAdd }) => {
                 </div>
                 <div className="text-right">
                   <div className="text-[10px] uppercase tracking-wider text-black/60">
-                    Desde 30 cajas
+                    Desde 25 cajas
                   </div>
                   <div className="font-display text-xl sm:text-2xl text-[#1D4ED8]">
                     {fmtCLP(product.priceMayor)}
@@ -549,7 +549,7 @@ export default function Home() {
         <span className="px-3">Despacho en Santiago RM</span>
         <span className="hidden sm:inline text-[#FFD60A]/50">·</span>
         <span className="hidden sm:inline px-3">
-          Precios mayoristas desde 30 cajas
+          Precios mayoristas desde 25 cajas
         </span>
         <span className="text-[#FFD60A]/50">·</span>
         <span className="px-3">Helados York en Santiago</span>
@@ -902,7 +902,10 @@ export default function Home() {
 
               <div className="mt-7 bg-white text-black rounded-2xl border border-black/10 p-5 shadow-soft-lg">
                 <div className="font-display text-[#DC2626] text-sm tracking-wider">
-                  PRECIOS MAYORISTAS · DESDE 30 CAJAS
+                  PRECIOS MAYORISTAS · DESDE 25 CAJAS
+                </div>
+                <div className="text-[11px] text-black/60 mt-1">
+                  Pueden ser surtidas, combinadas como elijas (leche + agua).
                 </div>
                 <div className="mt-3 grid grid-cols-2 gap-3 items-center">
                   <div>

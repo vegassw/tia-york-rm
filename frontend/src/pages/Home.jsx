@@ -42,7 +42,7 @@ import { toast, Toaster } from "sonner";
 const WHATSAPP = "56987756938";
 const INSTAGRAM = "https://www.instagram.com/latiayork_santiago";
 const TIKTOK = "https://www.tiktok.com/@yorkloverssantiago";
-const BRAND_FULL = "La Tía York · Santiago";
+const BRAND_FULL = "Helados York · Santiago";
 
 const waLink = (msg) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
@@ -100,24 +100,23 @@ const PRODUCTS = [
   {
     id: "paleta-doble",
     title: "Paleta Doble",
-    subtitle: "50 unidades · simple o doble",
+    subtitle: "50 unidades · formato grande",
     short: "Formato grande para revender al detalle. 50 unidades por pack.",
     description:
-      "Paletas dobles, formato pensado para revender al detalle en almacenes y kioscos. Pack con 50 unidades surtidas. Foto del producto próximamente.",
+      "Paletas dobles Helados York, formato pensado para revender al detalle en almacenes y kioscos. Pack con 50 unidades surtidas. Mayor margen por venta y muy demandada por el consumidor final.",
     price: 18000,
     priceMayor: 15000,
     unit: "pack",
-    stock: "Foto próximamente",
+    stock: "En stock",
     badge: "DOBLE",
     badgeColor: "#7C3AED",
-    images: ["paletas-mix-03.jpg", "paletas-mix-01.jpg"],
+    images: ["paleta-doble-real.jpg", "paletas-mix-03.jpg", "paletas-mix-01.jpg"],
     available: true,
-    pending: true,
     bullets: [
       "50 unidades por pack",
-      "Formato simple o doble",
+      "Formato grande, mayor margen",
       "Pensada para revender",
-      "Pendiente foto oficial del producto",
+      "Despacho refrigerado en Santiago",
     ],
   },
 ];
@@ -221,7 +220,7 @@ const BrandSticker = ({ small = false }) => (
           small ? "text-[9px]" : "text-[10px]"
         } text-[#DC2626] tracking-wider uppercase`}
       >
-        La Tía York · Santiago
+        Helados York · Santiago
       </span>
     </div>
   </div>
@@ -532,7 +531,7 @@ export default function Home() {
       const it = PRODUCTS.find((b) => b.id === id);
       return `• ${q} × ${it.title} — ${fmtCLP(it.price * q)}`;
     });
-    const msg = `Hola La Tía York Santiago!\n\nQuiero hacer este pedido:\n${lines.join(
+    const msg = `Hola Helados York Santiago!\n\nQuiero hacer este pedido:\n${lines.join(
       "\n"
     )}\n\nTotal estimado: ${fmtCLP(cartTotal)}\n\n¿Me confirman disponibilidad y despacho?`;
     window.open(waLink(msg), "_blank");
@@ -553,7 +552,7 @@ export default function Home() {
           Precios mayoristas desde 30 cajas
         </span>
         <span className="text-[#FFD60A]/50">·</span>
-        <span className="px-3">La Tía York en Santiago</span>
+        <span className="px-3">Helados York en Santiago</span>
       </div>
 
       {/* NAVBAR */}
@@ -567,13 +566,13 @@ export default function Home() {
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FFD60A] border-2 border-[#DC2626]/30 overflow-hidden shrink-0">
               <img
                 src={img("logo-tia.jpg")}
-                alt="La Tía York"
+                alt="Helados York"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="leading-tight min-w-0">
               <div className="font-display text-[#DC2626] text-sm sm:text-lg truncate">
-                LA TÍA YORK
+                HELADOS YORK
               </div>
               <div className="font-script text-black text-sm sm:text-base -mt-1">
                 Santiago
@@ -664,7 +663,7 @@ export default function Home() {
               className="font-display mt-5 text-[#DC2626] text-stroke-white-thin sm:text-stroke-white text-4xl sm:text-6xl lg:text-7xl leading-[0.95]"
               data-testid="hero-title"
             >
-              LA TÍA YORK <br />
+              HELADOS YORK <br />
               AHORA EN <br />
               <span className="text-black">SANTIAGO</span>
             </h1>
@@ -698,7 +697,7 @@ export default function Home() {
             <div className="relative">
               <BrandSticker />
               <img
-                src={img("camion.jpg")}
+                src={img("camion-nuevo.jpg")}
                 alt="Camión Helados York Santiago"
                 className="w-full rounded-3xl border border-black/15 shadow-brand"
               />
@@ -815,7 +814,7 @@ export default function Home() {
                 data-testid="distri-title"
               >
                 ¿QUIERES VENDER <br />
-                LA TÍA YORK EN <br />
+                HELADOS YORK EN <br />
                 TU NEGOCIO?
               </h2>
               <p className="mt-4 text-white/95 max-w-xl text-sm sm:text-base leading-relaxed">
@@ -880,7 +879,7 @@ export default function Home() {
 
               <a
                 href={waLink(
-                  "Hola! Quiero vender La Tía York en mi negocio. Mi negocio es: ____ Comuna: ____"
+                  "Hola! Quiero vender Helados York en mi negocio. Mi negocio es: ____ Comuna: ____"
                 )}
                 target="_blank"
                 rel="noreferrer"
@@ -899,7 +898,7 @@ export default function Home() {
               <div className="bg-white text-black rounded-3xl border border-black/10 overflow-hidden shadow-soft-lg">
                 <img
                   src={img("local.jpg")}
-                  alt="Distribuidor La Tía York Santiago"
+                  alt="Distribuidor Helados York Santiago"
                   className="w-full aspect-square sm:aspect-[4/3] object-cover"
                 />
               </div>
@@ -1042,10 +1041,10 @@ export default function Home() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { src: "local.jpg", label: "En tu local" },
+              { src: "cajas-helado.jpg", label: "Stock para tu negocio" },
               { src: "lifestyle-tv.jpg", label: "En tu casa" },
               { src: "produccion.jpg", label: "Hechos a mano" },
-              { src: "paleta-frutilla.jpg", label: "Sabor real" },
+              { src: "carro-caricatura.jpg", label: "La caricatura más querida" },
             ].map((it, i) => (
               <div
                 key={i}
@@ -1079,7 +1078,7 @@ export default function Home() {
           >
             <div className="lg:col-span-2">
               <h3 className="font-display text-2xl sm:text-4xl text-[#DC2626] text-stroke-white-thin sm:text-stroke-white">
-                ¿LISTO PARA <br /> PROBAR LA TÍA YORK?
+                ¿LISTO PARA <br /> PROBAR HELADOS YORK?
               </h3>
               <p className="mt-3 text-black/80 max-w-lg text-sm sm:text-base">
                 Escríbenos al WhatsApp y armamos tu pedido. Atendemos todos los
@@ -1088,7 +1087,7 @@ export default function Home() {
             </div>
             <a
               href={waLink(
-                "Hola La Tía York! Quiero hacer un pedido o más info."
+                "Hola Helados York! Quiero hacer un pedido o más info."
               )}
               target="_blank"
               rel="noreferrer"
@@ -1115,7 +1114,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="font-display text-xl text-[#FFD60A]">
-                    LA TÍA YORK
+                    HELADOS YORK
                   </div>
                   <div className="font-script text-lg -mt-1">Santiago</div>
                 </div>
@@ -1188,7 +1187,7 @@ export default function Home() {
 
           <div className="mt-10 pt-5 border-t border-white/20 flex flex-wrap justify-between gap-3 text-[11px] sm:text-xs text-white/70">
             <div>
-              © {new Date().getFullYear()} La Tía York Santiago · Porteño de
+              © {new Date().getFullYear()} Helados York Santiago · Porteño de
               corazón
             </div>
             <div>Despacho en Región Metropolitana</div>
@@ -1198,7 +1197,7 @@ export default function Home() {
 
       {/* Floating WhatsApp */}
       <a
-        href={waLink("Hola La Tía York!")}
+        href={waLink("Hola Helados York!")}
         target="_blank"
         rel="noreferrer"
         className="fixed bottom-4 right-4 z-50"

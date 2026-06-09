@@ -694,14 +694,67 @@ export default function Home() {
           </div>
 
           <div className="lg:col-span-5 relative">
-            <div className="relative">
-              <BrandSticker />
-              <img
-                src={img("camion-nuevo.jpg")}
-                alt="Camión Helados York Santiago"
-                className="w-full rounded-3xl border border-black/15 shadow-brand"
+            <div className="relative group [perspective:1200px]">
+              {/* Glow multicolor pulsante detrás */}
+              <div
+                aria-hidden="true"
+                className="absolute -inset-6 sm:-inset-8 rounded-[40px] pulse-glow"
+                style={{
+                  background:
+                    "conic-gradient(from 0deg at 50% 50%, #DC2626, #FFD60A, #1D4ED8, #DC2626)",
+                  filter: "blur(48px)",
+                  opacity: 0.55,
+                  zIndex: 0,
+                }}
               />
-              <div className="absolute -bottom-5 -right-3 sm:-right-5 bg-white border border-black/10 rounded-2xl px-4 py-3 shadow-soft-lg">
+
+              {/* Halo radial suave */}
+              <div
+                aria-hidden="true"
+                className="absolute -inset-4 rounded-[36px] bg-white/40 blur-2xl"
+                style={{ zIndex: 0 }}
+              />
+
+              {/* Snowflake girando arriba derecha */}
+              <div className="absolute -top-6 -right-2 sm:-top-8 sm:-right-4 z-20 spin-med">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white shadow-soft-lg grid place-items-center border-2 border-[#1D4ED8]/20">
+                  <Snowflake className="w-7 h-7 sm:w-9 sm:h-9 text-[#1D4ED8]" strokeWidth={2.5} />
+                </div>
+              </div>
+
+              {/* Badge flotante "Despachamos hoy" */}
+              <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-5 z-20 floaty-badge">
+                <div className="bg-[#DC2626] text-[#FFD60A] font-display text-[11px] sm:text-xs px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-soft-lg whitespace-nowrap tracking-wider">
+                  🚚 DESPACHAMOS HOY
+                </div>
+              </div>
+
+              {/* Sparkles decorativos */}
+              <span className="absolute top-1/4 -right-5 sm:-right-6 z-20 text-[#FFD60A] text-2xl sparkle sparkle-d1 drop-shadow" aria-hidden="true">✦</span>
+              <span className="absolute bottom-1/3 -left-4 sm:-left-6 z-20 text-[#DC2626] text-xl sparkle sparkle-d2 drop-shadow" aria-hidden="true">✦</span>
+              <span className="absolute top-2/3 right-1/4 z-20 text-white text-lg sparkle sparkle-d3 drop-shadow" aria-hidden="true">✦</span>
+              <span className="absolute bottom-12 right-6 z-20 text-[#FFD60A] text-xl sparkle drop-shadow" aria-hidden="true">✦</span>
+
+              {/* Container con float sutil + hover tilt */}
+              <div className="relative floaty-subtle transition-transform duration-500 group-hover:scale-[1.02] group-hover:-rotate-1 will-change-transform">
+                <BrandSticker />
+
+                <div className="relative rounded-3xl overflow-hidden border border-black/15 shadow-brand">
+                  <img
+                    src={img("camion-nuevo.jpg")}
+                    alt="Camión Helados York en Santiago"
+                    className="w-full block"
+                    draggable="false"
+                  />
+                  {/* Vignette superior para legibilidad del badge si se sobrepone */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/20 pointer-events-none" />
+                  {/* Shimmer recorriendo la imagen */}
+                  <div className="absolute inset-0 shimmer-overlay" />
+                </div>
+              </div>
+
+              {/* Card flotante "Síguenos" */}
+              <div className="absolute -bottom-5 -right-3 sm:-right-5 z-20 bg-white border border-black/10 rounded-2xl px-4 py-3 shadow-soft-lg">
                 <div className="font-display text-[10px] tracking-wider text-black/50 uppercase">
                   Síguenos
                 </div>

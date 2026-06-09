@@ -897,8 +897,8 @@ export default function Home() {
             <div className="lg:col-span-5 space-y-4">
               <div className="bg-white text-black rounded-3xl border border-black/10 overflow-hidden shadow-soft-lg">
                 <img
-                  src={img("local.jpg")}
-                  alt="Distribuidor Helados York Santiago"
+                  src={img("congeladora.jpg")}
+                  alt="Congeladora Helados York para tu negocio"
                   className="w-full aspect-square sm:aspect-[4/3] object-cover"
                 />
               </div>
